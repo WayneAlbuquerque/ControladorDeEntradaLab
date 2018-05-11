@@ -1,5 +1,5 @@
 # Controlador de entrada de Laboratório
-##Trabalho da disciplina de Eletronica Digital 2
+## Trabalho da disciplina de Eletronica Digital 2
 
 #### Objetivo
 Criar um programa em C para Atmega328p que controle a entrada de pessoas em 
