@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>ControleDeAcesso</AssemblyName>
-    <Name>ControleDeAcesso</Name>
-    <RootNamespace>ControleDeAcesso</RootNamespace>
+    <AssemblyName>ControleDeEntrada</AssemblyName>
+    <Name>ControleDeEntrada</Name>
+    <RootNamespace>ControleDeEntrada</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
