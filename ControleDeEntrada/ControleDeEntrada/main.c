@@ -10,50 +10,43 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
+#include <stdarg.h>
 #define set_bit(adress,bit) (adress|=(1<<bit))
 #define clr_bit(adress,bit) (adress&=~(1<<bit))
 #define rd_bit(adress,bit) (adress&(1<<bit))
 #define cpl_bit(adress,bit) (adress^=(1<<bit))
-
 #define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) -1)
-char comando;
-int i = 0;
 
-void led()
-{
-	if(comando == 'L')
-	{
-		set_bit(PORTB, PORTB5);
+enum Estados {Aguarda, Liberacao, Configuracao}; //Estados do sistema
+char senhas[7][10] = {"111111","222222","333333","444444","555555","666666"}; // Senha do sistema
+char buffer[6] = ""; // Buffer para captura da senha digitada
+int i = 0, liberacao = 0, Est = 0;
+
+int TestaSenha(char senha[6]){ //Funcao para comparar a senha digitada com o banco de senhas
+	for(int c = 0; c < 10; c++){ 
+		if(strcmp(senha,senhas[c])==0 || strcmp(senha,"master") == 0 ){	// Testa se a senha digitada e a senha mestre ou uma do banco de senhas		
+			if(strcmp(senha,"master") == 0){ // Testa se e a senha mestre
+				return 2; 
+			}else{
+				return 1;
+			}
+		}
 	}
-	if(comando == 'D')
-	{
-		clr_bit(PORTB, PORTB5);
-	}
-	if(comando == 'P')
-	{
-		
-		set_bit(PORTB, PORTB5);
-		_delay_ms(1000);
-		clr_bit(PORTB, PORTB5);
-		_delay_ms(1000);
-	}
-	
+	return 0;	
 }
 
-void USART_Transmit( unsigned char data )
+void USART_Transmit( unsigned char data ) // transmite um caracter para o serial do Atmega328p
 {
 	while ( !(UCSR0A & (1<<UDRE0)));
 	UDR0 = data;	
 }
 
-void MensagemInicial(){
-	char msg[] = " BEM VINDO \r\n ESTE E O LAB DGT2 \r\n DIGITE SUA SENHA! \r\n";
+void MensagemInicial(){ // Escreve mensagens
+	char msg[] = "     BEM VINDO \r\n ESTE E O LAB DGT2 \r\n DIGITE SUA SENHA! \r\n";
 	while(i != strlen(msg)){	
 		USART_Transmit(msg[i++]);
 	}
-	i = 0;
-
 }
 
 int main(void)
@@ -72,10 +65,38 @@ int main(void)
 	sei();
 
 	MensagemInicial();
-	
+
 	for(;;)
 	{
-		led();
+		switch(Est){
+			case Aguarda: //Aguarda senha
+				if(strlen(buffer)==6){ // Testa se o buffer tem tamanho 6
+					Est = TestaSenha(buffer); // Atribui o proximo estado do sistema
+					strcpy(buffer,""); // Limpa o buffer
+				}
+			break;
+			case Liberacao:
+					set_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					clr_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					Est = 0; // Retorna ao esta Aguarda
+
+			break;
+			case Configuracao:
+					set_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					clr_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					set_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					clr_bit(PORTB, PORTB5);
+					_delay_ms(1000);
+					Est = 0; // Retorna ao esta Aguarda
+
+			break;
+		}
+
 	}
 	
     while (1) 
@@ -88,9 +109,11 @@ int main(void)
 ISR(USART_RX_vect)
 {
 	char ReceivedByte = UDR0;
-	if(ReceivedByte == 'L' || ReceivedByte == 'D' || ReceivedByte == 'P')
-	{
-		comando = ReceivedByte;
+	char str[3];
+	if(ReceivedByte){ // Testa se a variavel tem um valor se tem entra na condicao
+		str[0] = ReceivedByte; //cria uma string
+		str[1] = '\0';		   //com o caracter lido
+		strcat(buffer,str);    // concatena str no buffer	
 	}
-	
+		
 }
