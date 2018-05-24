@@ -3,31 +3,31 @@ ControleDeEntrada.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000008a  00800100  0000033a  000003ce  2**0
+  0 .data         000000de  00800100  0000052c  000005c0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000033a  00000000  00000000  00000094  2**1
+  1 .text         0000052c  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000a  0080018a  0080018a  00000458  2**0
+  2 .bss          0000000c  008001de  008001de  0000069e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000458  2**0
+  3 .comment      00000030  00000000  00000000  0000069e  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000488  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000006d0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000040  00000000  00000000  000004c8  2**0
+  5 .debug_aranges 00000058  00000000  00000000  00000710  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000a93  00000000  00000000  00000508  2**0
+  6 .debug_info   00000c25  00000000  00000000  00000768  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007c6  00000000  00000000  00000f9b  2**0
+  7 .debug_abbrev 000007f1  00000000  00000000  0000138d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000003ed  00000000  00000000  00001761  2**0
+  8 .debug_line   0000057a  00000000  00000000  00001b7e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000f8  00000000  00000000  00001b50  2**2
+  9 .debug_frame  000001b4  00000000  00000000  000020f8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000458  00000000  00000000  00001c48  2**0
+ 10 .debug_str    0000047f  00000000  00000000  000022ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000003dc  00000000  00000000  000020a0  2**0
+ 11 .debug_loc    000005e7  00000000  00000000  0000272b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000048  00000000  00000000  0000247c  2**0
+ 12 .debug_ranges 00000048  00000000  00000000  00002d12  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -36,7 +36,7 @@ Disassembly of section .text:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
    4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
    8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 fe 01 	jmp	0x3fc	; 0x3fc <__vector_3>
   10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -51,7 +51,7 @@ Disassembly of section .text:
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  48:	0c 94 4d 01 	jmp	0x29a	; 0x29a <__vector_18>
+  48:	0c 94 b7 01 	jmp	0x36e	; 0x36e <__vector_18>
   4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	ea e3       	ldi	r30, 0x3A	; 58
-  7c:	f3 e0       	ldi	r31, 0x03	; 3
+  7a:	ec e2       	ldi	r30, 0x2C	; 44
+  7c:	f5 e0       	ldi	r31, 0x05	; 5
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	aa 38       	cpi	r26, 0x8A	; 138
+  84:	ae 3d       	cpi	r26, 0xDE	; 222
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	aa e8       	ldi	r26, 0x8A	; 138
+  8c:	ae ed       	ldi	r26, 0xDE	; 222
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,466 +91,769 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a4 39       	cpi	r26, 0x94	; 148
+  94:	aa 3e       	cpi	r26, 0xEA	; 234
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <main>
-  9e:	0c 94 9b 01 	jmp	0x336	; 0x336 <_exit>
+  9a:	0e 94 47 01 	call	0x28e	; 0x28e <main>
+  9e:	0c 94 94 02 	jmp	0x528	; 0x528 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000a6 <TestaSenha>:
-enum Estados {Aguarda, Liberacao, Configuracao}; //Estados do sistema
-char senhas[7][10] = {"111111","222222","333333","444444","555555","666666"}; // Senha do sistema
-char buffer[6] = ""; // Buffer para captura da senha digitada
-int i = 0, liberacao = 0, Est = 0;
+000000a6 <USART_Transmit>:
 
-int TestaSenha(char senha[6]){ //Funcao para comparar a senha digitada com o banco de senhas
-  a6:	ef 92       	push	r14
-  a8:	ff 92       	push	r15
-  aa:	0f 93       	push	r16
-  ac:	1f 93       	push	r17
-  ae:	cf 93       	push	r28
-  b0:	df 93       	push	r29
-  b2:	8c 01       	movw	r16, r24
-  b4:	c0 e0       	ldi	r28, 0x00	; 0
-  b6:	d1 e0       	ldi	r29, 0x01	; 1
-  b8:	0f 2e       	mov	r0, r31
-  ba:	f4 e6       	ldi	r31, 0x64	; 100
-  bc:	ef 2e       	mov	r14, r31
-  be:	f1 e0       	ldi	r31, 0x01	; 1
-  c0:	ff 2e       	mov	r15, r31
-  c2:	f0 2d       	mov	r31, r0
-	for(int c = 0; c < 10; c++){ 
-		if(strcmp(senha,senhas[c])==0 || strcmp(senha,"master") == 0 ){	// Testa se a senha digitada e a senha mestre ou uma do banco de senhas		
-  c4:	be 01       	movw	r22, r28
-  c6:	c8 01       	movw	r24, r16
-  c8:	0e 94 92 01 	call	0x324	; 0x324 <strcmp>
-  cc:	89 2b       	or	r24, r25
-  ce:	41 f0       	breq	.+16     	; 0xe0 <TestaSenha+0x3a>
-  d0:	66 e4       	ldi	r22, 0x46	; 70
-  d2:	71 e0       	ldi	r23, 0x01	; 1
-  d4:	c8 01       	movw	r24, r16
-  d6:	0e 94 92 01 	call	0x324	; 0x324 <strcmp>
-  da:	89 2b       	or	r24, r25
-  dc:	59 f4       	brne	.+22     	; 0xf4 <TestaSenha+0x4e>
-  de:	11 c0       	rjmp	.+34     	; 0x102 <TestaSenha+0x5c>
-			if(strcmp(senha,"master") == 0){ // Testa se e a senha mestre
-  e0:	66 e4       	ldi	r22, 0x46	; 70
-  e2:	71 e0       	ldi	r23, 0x01	; 1
-  e4:	c8 01       	movw	r24, r16
-  e6:	0e 94 92 01 	call	0x324	; 0x324 <strcmp>
-  ea:	89 2b       	or	r24, r25
-  ec:	69 f0       	breq	.+26     	; 0x108 <TestaSenha+0x62>
-				return 2; 
-			}else{
-				return 1;
-  ee:	81 e0       	ldi	r24, 0x01	; 1
-  f0:	90 e0       	ldi	r25, 0x00	; 0
-  f2:	0c c0       	rjmp	.+24     	; 0x10c <TestaSenha+0x66>
-  f4:	2a 96       	adiw	r28, 0x0a	; 10
-char senhas[7][10] = {"111111","222222","333333","444444","555555","666666"}; // Senha do sistema
-char buffer[6] = ""; // Buffer para captura da senha digitada
-int i = 0, liberacao = 0, Est = 0;
 
-int TestaSenha(char senha[6]){ //Funcao para comparar a senha digitada com o banco de senhas
-	for(int c = 0; c < 10; c++){ 
-  f6:	ce 15       	cp	r28, r14
-  f8:	df 05       	cpc	r29, r15
-  fa:	21 f7       	brne	.-56     	; 0xc4 <TestaSenha+0x1e>
-			}else{
-				return 1;
-			}
-		}
-	}
-	return 0;	
-  fc:	80 e0       	ldi	r24, 0x00	; 0
-  fe:	90 e0       	ldi	r25, 0x00	; 0
- 100:	05 c0       	rjmp	.+10     	; 0x10c <TestaSenha+0x66>
-
-int TestaSenha(char senha[6]){ //Funcao para comparar a senha digitada com o banco de senhas
-	for(int c = 0; c < 10; c++){ 
-		if(strcmp(senha,senhas[c])==0 || strcmp(senha,"master") == 0 ){	// Testa se a senha digitada e a senha mestre ou uma do banco de senhas		
-			if(strcmp(senha,"master") == 0){ // Testa se e a senha mestre
-				return 2; 
- 102:	82 e0       	ldi	r24, 0x02	; 2
- 104:	90 e0       	ldi	r25, 0x00	; 0
- 106:	02 c0       	rjmp	.+4      	; 0x10c <TestaSenha+0x66>
- 108:	82 e0       	ldi	r24, 0x02	; 2
- 10a:	90 e0       	ldi	r25, 0x00	; 0
-				return 1;
-			}
-		}
-	}
-	return 0;	
-}
- 10c:	df 91       	pop	r29
- 10e:	cf 91       	pop	r28
- 110:	1f 91       	pop	r17
- 112:	0f 91       	pop	r16
- 114:	ff 90       	pop	r15
- 116:	ef 90       	pop	r14
- 118:	08 95       	ret
-
-0000011a <USART_Transmit>:
 
 void USART_Transmit( unsigned char data ) // transmite um caracter para o serial do Atmega328p
 {
 	while ( !(UCSR0A & (1<<UDRE0)));
- 11a:	e0 ec       	ldi	r30, 0xC0	; 192
- 11c:	f0 e0       	ldi	r31, 0x00	; 0
- 11e:	90 81       	ld	r25, Z
- 120:	95 ff       	sbrs	r25, 5
- 122:	fd cf       	rjmp	.-6      	; 0x11e <USART_Transmit+0x4>
+  a6:	e0 ec       	ldi	r30, 0xC0	; 192
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	90 81       	ld	r25, Z
+  ac:	95 ff       	sbrs	r25, 5
+  ae:	fd cf       	rjmp	.-6      	; 0xaa <USART_Transmit+0x4>
 	UDR0 = data;	
- 124:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
- 128:	08 95       	ret
+  b0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+  b4:	08 95       	ret
 
-0000012a <MensagemInicial>:
+000000b6 <print>:
 }
 
+void print(char dados[100]){ // Funcao que escreve uma string no terminal de ate 100 caracteres
+  b6:	ef 92       	push	r14
+  b8:	ff 92       	push	r15
+  ba:	0f 93       	push	r16
+  bc:	1f 93       	push	r17
+  be:	cf 93       	push	r28
+  c0:	df 93       	push	r29
+  c2:	8c 01       	movw	r16, r24
+  c4:	7c 01       	movw	r14, r24
+	int i = 0;
+  c6:	c0 e0       	ldi	r28, 0x00	; 0
+  c8:	d0 e0       	ldi	r29, 0x00	; 0
+	while(i != strlen(dados)){
+  ca:	06 c0       	rjmp	.+12     	; 0xd8 <print+0x22>
+		USART_Transmit(dados[i++]);
+  cc:	21 96       	adiw	r28, 0x01	; 1
+  ce:	f7 01       	movw	r30, r14
+  d0:	81 91       	ld	r24, Z+
+  d2:	7f 01       	movw	r14, r30
+  d4:	0e 94 53 00 	call	0xa6	; 0xa6 <USART_Transmit>
+	UDR0 = data;	
+}
+
+void print(char dados[100]){ // Funcao que escreve uma string no terminal de ate 100 caracteres
+	int i = 0;
+	while(i != strlen(dados)){
+  d8:	f8 01       	movw	r30, r16
+  da:	01 90       	ld	r0, Z+
+  dc:	00 20       	and	r0, r0
+  de:	e9 f7       	brne	.-6      	; 0xda <print+0x24>
+  e0:	31 97       	sbiw	r30, 0x01	; 1
+  e2:	e0 1b       	sub	r30, r16
+  e4:	f1 0b       	sbc	r31, r17
+  e6:	ec 17       	cp	r30, r28
+  e8:	fd 07       	cpc	r31, r29
+  ea:	81 f7       	brne	.-32     	; 0xcc <print+0x16>
+		USART_Transmit(dados[i++]);
+	}
+}
+  ec:	df 91       	pop	r29
+  ee:	cf 91       	pop	r28
+  f0:	1f 91       	pop	r17
+  f2:	0f 91       	pop	r16
+  f4:	ff 90       	pop	r15
+  f6:	ef 90       	pop	r14
+  f8:	08 95       	ret
+
+000000fa <TestaSenha>:
+
+int TestaSenha(char senha[10]){ //Funcao para comparar a senha digitada com o banco de senhas
+  fa:	ef 92       	push	r14
+  fc:	ff 92       	push	r15
+  fe:	0f 93       	push	r16
+ 100:	1f 93       	push	r17
+ 102:	cf 93       	push	r28
+ 104:	df 93       	push	r29
+	senha[strlen(senha)-1] = '\0';
+ 106:	fc 01       	movw	r30, r24
+ 108:	01 90       	ld	r0, Z+
+ 10a:	00 20       	and	r0, r0
+ 10c:	e9 f7       	brne	.-6      	; 0x108 <TestaSenha+0xe>
+ 10e:	32 97       	sbiw	r30, 0x02	; 2
+ 110:	10 82       	st	Z, r1
+	for(int c = 0; c < nsenhas; c++){
+ 112:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_start>
+ 116:	30 91 01 01 	lds	r19, 0x0101	; 0x800101 <__data_start+0x1>
+ 11a:	12 16       	cp	r1, r18
+ 11c:	13 06       	cpc	r1, r19
+ 11e:	ac f5       	brge	.+106    	; 0x18a <TestaSenha+0x90>
+ 120:	8c 01       	movw	r16, r24
+ 122:	c2 e0       	ldi	r28, 0x02	; 2
+ 124:	d1 e0       	ldi	r29, 0x01	; 1
+ 126:	79 01       	movw	r14, r18
+ 128:	ee 0c       	add	r14, r14
+ 12a:	ff 1c       	adc	r15, r15
+ 12c:	22 0f       	add	r18, r18
+ 12e:	33 1f       	adc	r19, r19
+ 130:	22 0f       	add	r18, r18
+ 132:	33 1f       	adc	r19, r19
+ 134:	22 0f       	add	r18, r18
+ 136:	33 1f       	adc	r19, r19
+ 138:	2e 0d       	add	r18, r14
+ 13a:	3f 1d       	adc	r19, r15
+ 13c:	c9 01       	movw	r24, r18
+ 13e:	8e 5f       	subi	r24, 0xFE	; 254
+ 140:	9e 4f       	sbci	r25, 0xFE	; 254
+ 142:	7c 01       	movw	r14, r24
+		if(strcmp(senha,senhas[c]) == 0 || strcmp(senha,"master") == 0 ){	// Testa se a senha digitada e a senha mestre ou uma do banco de senhas
+ 144:	be 01       	movw	r22, r28
+ 146:	c8 01       	movw	r24, r16
+ 148:	0e 94 8b 02 	call	0x516	; 0x516 <strcmp>
+ 14c:	89 2b       	or	r24, r25
+ 14e:	41 f0       	breq	.+16     	; 0x160 <TestaSenha+0x66>
+ 150:	64 e5       	ldi	r22, 0x54	; 84
+ 152:	71 e0       	ldi	r23, 0x01	; 1
+ 154:	c8 01       	movw	r24, r16
+ 156:	0e 94 8b 02 	call	0x516	; 0x516 <strcmp>
+ 15a:	89 2b       	or	r24, r25
+ 15c:	91 f4       	brne	.+36     	; 0x182 <TestaSenha+0x88>
+ 15e:	07 c0       	rjmp	.+14     	; 0x16e <TestaSenha+0x74>
+			if(strcmp(senha,"master") == 0){ // Testa se e a senha mestre
+ 160:	64 e5       	ldi	r22, 0x54	; 84
+ 162:	71 e0       	ldi	r23, 0x01	; 1
+ 164:	c8 01       	movw	r24, r16
+ 166:	0e 94 8b 02 	call	0x516	; 0x516 <strcmp>
+ 16a:	89 2b       	or	r24, r25
+ 16c:	29 f4       	brne	.+10     	; 0x178 <TestaSenha+0x7e>
+				strcpy(buffer,""); // Limpa o buffer
+ 16e:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <buffer>
+				return 2;
+ 172:	82 e0       	ldi	r24, 0x02	; 2
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	0d c0       	rjmp	.+26     	; 0x192 <TestaSenha+0x98>
+			}else{
+				strcpy(buffer,""); // Limpa o buffer
+ 178:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <buffer>
+				return 1;
+ 17c:	81 e0       	ldi	r24, 0x01	; 1
+ 17e:	90 e0       	ldi	r25, 0x00	; 0
+ 180:	08 c0       	rjmp	.+16     	; 0x192 <TestaSenha+0x98>
+ 182:	2a 96       	adiw	r28, 0x0a	; 10
+	}
+}
+
+int TestaSenha(char senha[10]){ //Funcao para comparar a senha digitada com o banco de senhas
+	senha[strlen(senha)-1] = '\0';
+	for(int c = 0; c < nsenhas; c++){
+ 184:	ce 15       	cp	r28, r14
+ 186:	df 05       	cpc	r29, r15
+ 188:	e9 f6       	brne	.-70     	; 0x144 <TestaSenha+0x4a>
+				strcpy(buffer,""); // Limpa o buffer
+				return 1;
+			}
+		}
+	}
+	strcpy(buffer,""); // Limpa o buffer
+ 18a:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <buffer>
+	return 0;
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+ 190:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 192:	df 91       	pop	r29
+ 194:	cf 91       	pop	r28
+ 196:	1f 91       	pop	r17
+ 198:	0f 91       	pop	r16
+ 19a:	ff 90       	pop	r15
+ 19c:	ef 90       	pop	r14
+ 19e:	08 95       	ret
+
+000001a0 <MensagemInicial>:
+
 void MensagemInicial(){ // Escreve mensagens
- 12a:	0f 93       	push	r16
- 12c:	1f 93       	push	r17
- 12e:	cf 93       	push	r28
- 130:	df 93       	push	r29
- 132:	cd b7       	in	r28, 0x3d	; 61
- 134:	de b7       	in	r29, 0x3e	; 62
- 136:	ec 97       	sbiw	r28, 0x3c	; 60
- 138:	0f b6       	in	r0, 0x3f	; 63
- 13a:	f8 94       	cli
- 13c:	de bf       	out	0x3e, r29	; 62
- 13e:	0f be       	out	0x3f, r0	; 63
- 140:	cd bf       	out	0x3d, r28	; 61
+ 1a0:	cf 92       	push	r12
+ 1a2:	df 92       	push	r13
+ 1a4:	ef 92       	push	r14
+ 1a6:	ff 92       	push	r15
+ 1a8:	0f 93       	push	r16
+ 1aa:	1f 93       	push	r17
+ 1ac:	cf 93       	push	r28
+ 1ae:	df 93       	push	r29
+ 1b0:	cd b7       	in	r28, 0x3d	; 61
+ 1b2:	de b7       	in	r29, 0x3e	; 62
+ 1b4:	ec 97       	sbiw	r28, 0x3c	; 60
+ 1b6:	0f b6       	in	r0, 0x3f	; 63
+ 1b8:	f8 94       	cli
+ 1ba:	de bf       	out	0x3e, r29	; 62
+ 1bc:	0f be       	out	0x3f, r0	; 63
+ 1be:	cd bf       	out	0x3d, r28	; 61
 	char msg[] = "     BEM VINDO \r\n ESTE E O LAB DGT2 \r\n DIGITE SUA SENHA! \r\n";
- 142:	8c e3       	ldi	r24, 0x3C	; 60
- 144:	ed e4       	ldi	r30, 0x4D	; 77
- 146:	f1 e0       	ldi	r31, 0x01	; 1
- 148:	de 01       	movw	r26, r28
- 14a:	11 96       	adiw	r26, 0x01	; 1
- 14c:	01 90       	ld	r0, Z+
- 14e:	0d 92       	st	X+, r0
- 150:	8a 95       	dec	r24
- 152:	e1 f7       	brne	.-8      	; 0x14c <MensagemInicial+0x22>
+ 1c0:	8c e3       	ldi	r24, 0x3C	; 60
+ 1c2:	eb e5       	ldi	r30, 0x5B	; 91
+ 1c4:	f1 e0       	ldi	r31, 0x01	; 1
+ 1c6:	de 01       	movw	r26, r28
+ 1c8:	11 96       	adiw	r26, 0x01	; 1
+ 1ca:	01 90       	ld	r0, Z+
+ 1cc:	0d 92       	st	X+, r0
+ 1ce:	8a 95       	dec	r24
+ 1d0:	e1 f7       	brne	.-8      	; 0x1ca <MensagemInicial+0x2a>
+ 1d2:	ce 01       	movw	r24, r28
+ 1d4:	01 96       	adiw	r24, 0x01	; 1
+ 1d6:	7c 01       	movw	r14, r24
+	int i = 0;
+ 1d8:	00 e0       	ldi	r16, 0x00	; 0
+ 1da:	10 e0       	ldi	r17, 0x00	; 0
 	while(i != strlen(msg)){	
- 154:	8e 01       	movw	r16, r28
- 156:	0f 5f       	subi	r16, 0xFF	; 255
- 158:	1f 4f       	sbci	r17, 0xFF	; 255
- 15a:	0d c0       	rjmp	.+26     	; 0x176 <MensagemInicial+0x4c>
+ 1dc:	6c 01       	movw	r12, r24
+ 1de:	07 c0       	rjmp	.+14     	; 0x1ee <MensagemInicial+0x4e>
 		USART_Transmit(msg[i++]);
- 15c:	9c 01       	movw	r18, r24
- 15e:	2f 5f       	subi	r18, 0xFF	; 255
- 160:	3f 4f       	sbci	r19, 0xFF	; 255
- 162:	30 93 8d 01 	sts	0x018D, r19	; 0x80018d <i+0x1>
- 166:	20 93 8c 01 	sts	0x018C, r18	; 0x80018c <i>
- 16a:	f8 01       	movw	r30, r16
- 16c:	e8 0f       	add	r30, r24
- 16e:	f9 1f       	adc	r31, r25
- 170:	80 81       	ld	r24, Z
- 172:	0e 94 8d 00 	call	0x11a	; 0x11a <USART_Transmit>
-	UDR0 = data;	
+ 1e0:	0f 5f       	subi	r16, 0xFF	; 255
+ 1e2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 1e4:	f7 01       	movw	r30, r14
+ 1e6:	81 91       	ld	r24, Z+
+ 1e8:	7f 01       	movw	r14, r30
+ 1ea:	0e 94 53 00 	call	0xa6	; 0xa6 <USART_Transmit>
 }
 
 void MensagemInicial(){ // Escreve mensagens
 	char msg[] = "     BEM VINDO \r\n ESTE E O LAB DGT2 \r\n DIGITE SUA SENHA! \r\n";
+	int i = 0;
 	while(i != strlen(msg)){	
- 176:	f8 01       	movw	r30, r16
- 178:	01 90       	ld	r0, Z+
- 17a:	00 20       	and	r0, r0
- 17c:	e9 f7       	brne	.-6      	; 0x178 <MensagemInicial+0x4e>
- 17e:	31 97       	sbiw	r30, 0x01	; 1
- 180:	e0 1b       	sub	r30, r16
- 182:	f1 0b       	sbc	r31, r17
- 184:	80 91 8c 01 	lds	r24, 0x018C	; 0x80018c <i>
- 188:	90 91 8d 01 	lds	r25, 0x018D	; 0x80018d <i+0x1>
- 18c:	e8 17       	cp	r30, r24
- 18e:	f9 07       	cpc	r31, r25
- 190:	29 f7       	brne	.-54     	; 0x15c <MensagemInicial+0x32>
+ 1ee:	f6 01       	movw	r30, r12
+ 1f0:	01 90       	ld	r0, Z+
+ 1f2:	00 20       	and	r0, r0
+ 1f4:	e9 f7       	brne	.-6      	; 0x1f0 <MensagemInicial+0x50>
+ 1f6:	31 97       	sbiw	r30, 0x01	; 1
+ 1f8:	ec 19       	sub	r30, r12
+ 1fa:	fd 09       	sbc	r31, r13
+ 1fc:	e0 17       	cp	r30, r16
+ 1fe:	f1 07       	cpc	r31, r17
+ 200:	79 f7       	brne	.-34     	; 0x1e0 <MensagemInicial+0x40>
 		USART_Transmit(msg[i++]);
 	}
 }
- 192:	ec 96       	adiw	r28, 0x3c	; 60
- 194:	0f b6       	in	r0, 0x3f	; 63
- 196:	f8 94       	cli
- 198:	de bf       	out	0x3e, r29	; 62
- 19a:	0f be       	out	0x3f, r0	; 63
- 19c:	cd bf       	out	0x3d, r28	; 61
- 19e:	df 91       	pop	r29
- 1a0:	cf 91       	pop	r28
- 1a2:	1f 91       	pop	r17
- 1a4:	0f 91       	pop	r16
- 1a6:	08 95       	ret
+ 202:	ec 96       	adiw	r28, 0x3c	; 60
+ 204:	0f b6       	in	r0, 0x3f	; 63
+ 206:	f8 94       	cli
+ 208:	de bf       	out	0x3e, r29	; 62
+ 20a:	0f be       	out	0x3f, r0	; 63
+ 20c:	cd bf       	out	0x3d, r28	; 61
+ 20e:	df 91       	pop	r29
+ 210:	cf 91       	pop	r28
+ 212:	1f 91       	pop	r17
+ 214:	0f 91       	pop	r16
+ 216:	ff 90       	pop	r15
+ 218:	ef 90       	pop	r14
+ 21a:	df 90       	pop	r13
+ 21c:	cf 90       	pop	r12
+ 21e:	08 95       	ret
 
-000001a8 <main>:
+00000220 <varrer>:
 
-int main(void)
-{
-	DDRB = 0xFF;
- 1a8:	8f ef       	ldi	r24, 0xFF	; 255
- 1aa:	84 b9       	out	0x04, r24	; 4
-	PORTB = 0x00;
- 1ac:	15 b8       	out	0x05, r1	; 5
-	
-	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
- 1ae:	e1 ec       	ldi	r30, 0xC1	; 193
- 1b0:	f0 e0       	ldi	r31, 0x00	; 0
- 1b2:	88 e1       	ldi	r24, 0x18	; 24
- 1b4:	80 83       	st	Z, r24
-	UCSR0C = (1 << USBS0) | (1 << UCSZ00) | (1 << UCSZ01);
- 1b6:	8e e0       	ldi	r24, 0x0E	; 14
- 1b8:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
-	
-	UBRR0H = (BAUD_PRESCALE >> 8);
- 1bc:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
-	UBRR0L = BAUD_PRESCALE;
- 1c0:	87 e6       	ldi	r24, 0x67	; 103
- 1c2:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
-	
-	UCSR0B |= (1 << RXCIE0);
- 1c6:	80 81       	ld	r24, Z
- 1c8:	80 68       	ori	r24, 0x80	; 128
- 1ca:	80 83       	st	Z, r24
-	
-	sei();
- 1cc:	78 94       	sei
-
-	MensagemInicial();
- 1ce:	0e 94 95 00 	call	0x12a	; 0x12a <MensagemInicial>
-
-	for(;;)
-	{
-		switch(Est){
-			case Aguarda: //Aguarda senha
-				if(strlen(buffer)==6){ // Testa se o buffer tem tamanho 6
- 1d2:	ce e8       	ldi	r28, 0x8E	; 142
- 1d4:	d1 e0       	ldi	r29, 0x01	; 1
-
-	MensagemInicial();
-
-	for(;;)
-	{
-		switch(Est){
- 1d6:	80 91 8a 01 	lds	r24, 0x018A	; 0x80018a <__data_end>
- 1da:	90 91 8b 01 	lds	r25, 0x018B	; 0x80018b <__data_end+0x1>
- 1de:	81 30       	cpi	r24, 0x01	; 1
- 1e0:	91 05       	cpc	r25, r1
- 1e2:	a9 f0       	breq	.+42     	; 0x20e <main+0x66>
- 1e4:	82 30       	cpi	r24, 0x02	; 2
- 1e6:	91 05       	cpc	r25, r1
- 1e8:	59 f1       	breq	.+86     	; 0x240 <main+0x98>
- 1ea:	00 97       	sbiw	r24, 0x00	; 0
- 1ec:	c1 f7       	brne	.-16     	; 0x1de <main+0x36>
-			case Aguarda: //Aguarda senha
-				if(strlen(buffer)==6){ // Testa se o buffer tem tamanho 6
- 1ee:	fe 01       	movw	r30, r28
- 1f0:	01 90       	ld	r0, Z+
- 1f2:	00 20       	and	r0, r0
- 1f4:	e9 f7       	brne	.-6      	; 0x1f0 <main+0x48>
- 1f6:	e5 59       	subi	r30, 0x95	; 149
- 1f8:	f1 40       	sbci	r31, 0x01	; 1
- 1fa:	69 f7       	brne	.-38     	; 0x1d6 <main+0x2e>
-					Est = TestaSenha(buffer); // Atribui o proximo estado do sistema
- 1fc:	ce 01       	movw	r24, r28
- 1fe:	0e 94 53 00 	call	0xa6	; 0xa6 <TestaSenha>
- 202:	90 93 8b 01 	sts	0x018B, r25	; 0x80018b <__data_end+0x1>
- 206:	80 93 8a 01 	sts	0x018A, r24	; 0x80018a <__data_end>
-					strcpy(buffer,""); // Limpa o buffer
- 20a:	18 82       	st	Y, r1
- 20c:	e4 cf       	rjmp	.-56     	; 0x1d6 <main+0x2e>
-				}
-			break;
-			case Liberacao:
-					set_bit(PORTB, PORTB5);
- 20e:	2d 9a       	sbi	0x05, 5	; 5
+void varrer(){ //funcao para varrer ligando e desligando os pinos do teclado
+	p1 = 0; 
+ 220:	10 92 e9 01 	sts	0x01E9, r1	; 0x8001e9 <p1+0x1>
+ 224:	10 92 e8 01 	sts	0x01E8, r1	; 0x8001e8 <p1>
+	set_bit(PORTB,PB3); //Liga Porta PB3
+ 228:	2b 9a       	sbi	0x05, 3	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 210:	8f ef       	ldi	r24, 0xFF	; 255
- 212:	93 ed       	ldi	r25, 0xD3	; 211
- 214:	20 e3       	ldi	r18, 0x30	; 48
- 216:	81 50       	subi	r24, 0x01	; 1
- 218:	90 40       	sbci	r25, 0x00	; 0
- 21a:	20 40       	sbci	r18, 0x00	; 0
- 21c:	e1 f7       	brne	.-8      	; 0x216 <main+0x6e>
- 21e:	00 c0       	rjmp	.+0      	; 0x220 <main+0x78>
- 220:	00 00       	nop
-					_delay_ms(1000);
-					clr_bit(PORTB, PORTB5);
- 222:	2d 98       	cbi	0x05, 5	; 5
- 224:	8f ef       	ldi	r24, 0xFF	; 255
- 226:	93 ed       	ldi	r25, 0xD3	; 211
- 228:	20 e3       	ldi	r18, 0x30	; 48
- 22a:	81 50       	subi	r24, 0x01	; 1
- 22c:	90 40       	sbci	r25, 0x00	; 0
- 22e:	20 40       	sbci	r18, 0x00	; 0
- 230:	e1 f7       	brne	.-8      	; 0x22a <main+0x82>
- 232:	00 c0       	rjmp	.+0      	; 0x234 <main+0x8c>
+ 22a:	8f e3       	ldi	r24, 0x3F	; 63
+ 22c:	9c e9       	ldi	r25, 0x9C	; 156
+ 22e:	01 97       	sbiw	r24, 0x01	; 1
+ 230:	f1 f7       	brne	.-4      	; 0x22e <varrer+0xe>
+ 232:	00 c0       	rjmp	.+0      	; 0x234 <varrer+0x14>
  234:	00 00       	nop
-					_delay_ms(1000);
-					Est = 0; // Retorna ao esta Aguarda
- 236:	10 92 8b 01 	sts	0x018B, r1	; 0x80018b <__data_end+0x1>
- 23a:	10 92 8a 01 	sts	0x018A, r1	; 0x80018a <__data_end>
+	_delay_ms(10);
+	clr_bit(PORTB,PB3); //Desliga Porta PB3
+ 236:	2b 98       	cbi	0x05, 3	; 5
+	p1 = 1;
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	90 93 e9 01 	sts	0x01E9, r25	; 0x8001e9 <p1+0x1>
+ 240:	80 93 e8 01 	sts	0x01E8, r24	; 0x8001e8 <p1>
+	set_bit(PORTB,PB4); //Liga Porta PB4
+ 244:	2c 9a       	sbi	0x05, 4	; 5
+ 246:	8f e3       	ldi	r24, 0x3F	; 63
+ 248:	9c e9       	ldi	r25, 0x9C	; 156
+ 24a:	01 97       	sbiw	r24, 0x01	; 1
+ 24c:	f1 f7       	brne	.-4      	; 0x24a <varrer+0x2a>
+ 24e:	00 c0       	rjmp	.+0      	; 0x250 <varrer+0x30>
+ 250:	00 00       	nop
+	_delay_ms(10);
+	clr_bit(PORTB,PB4); //Desliga Porta PB4
+ 252:	2c 98       	cbi	0x05, 4	; 5
+	p1 = 2;
+ 254:	82 e0       	ldi	r24, 0x02	; 2
+ 256:	90 e0       	ldi	r25, 0x00	; 0
+ 258:	90 93 e9 01 	sts	0x01E9, r25	; 0x8001e9 <p1+0x1>
+ 25c:	80 93 e8 01 	sts	0x01E8, r24	; 0x8001e8 <p1>
+	set_bit(PORTB,PB5); //Liga Porta PB5
+ 260:	2d 9a       	sbi	0x05, 5	; 5
+ 262:	8f e3       	ldi	r24, 0x3F	; 63
+ 264:	9c e9       	ldi	r25, 0x9C	; 156
+ 266:	01 97       	sbiw	r24, 0x01	; 1
+ 268:	f1 f7       	brne	.-4      	; 0x266 <varrer+0x46>
+ 26a:	00 c0       	rjmp	.+0      	; 0x26c <varrer+0x4c>
+ 26c:	00 00       	nop
+	_delay_ms(10);
+	clr_bit(PORTB,PB5); //Desliga Porta PB5
+ 26e:	2d 98       	cbi	0x05, 5	; 5
+	p1 = 3;
+ 270:	83 e0       	ldi	r24, 0x03	; 3
+ 272:	90 e0       	ldi	r25, 0x00	; 0
+ 274:	90 93 e9 01 	sts	0x01E9, r25	; 0x8001e9 <p1+0x1>
+ 278:	80 93 e8 01 	sts	0x01E8, r24	; 0x8001e8 <p1>
+	set_bit(PORTC,PC0); //Liga Porta PC0
+ 27c:	40 9a       	sbi	0x08, 0	; 8
+ 27e:	8f e3       	ldi	r24, 0x3F	; 63
+ 280:	9c e9       	ldi	r25, 0x9C	; 156
+ 282:	01 97       	sbiw	r24, 0x01	; 1
+ 284:	f1 f7       	brne	.-4      	; 0x282 <varrer+0x62>
+ 286:	00 c0       	rjmp	.+0      	; 0x288 <varrer+0x68>
+ 288:	00 00       	nop
+	_delay_ms(10);
+	clr_bit(PORTC,PC0); //Desliga Porta PC0
+ 28a:	40 98       	cbi	0x08, 0	; 8
+ 28c:	08 95       	ret
 
-			break;
- 23e:	cb cf       	rjmp	.-106    	; 0x1d6 <main+0x2e>
-			case Configuracao:
-					set_bit(PORTB, PORTB5);
- 240:	2d 9a       	sbi	0x05, 5	; 5
- 242:	8f ef       	ldi	r24, 0xFF	; 255
- 244:	93 ed       	ldi	r25, 0xD3	; 211
- 246:	20 e3       	ldi	r18, 0x30	; 48
- 248:	81 50       	subi	r24, 0x01	; 1
- 24a:	90 40       	sbci	r25, 0x00	; 0
- 24c:	20 40       	sbci	r18, 0x00	; 0
- 24e:	e1 f7       	brne	.-8      	; 0x248 <main+0xa0>
- 250:	00 c0       	rjmp	.+0      	; 0x252 <main+0xaa>
- 252:	00 00       	nop
-					_delay_ms(1000);
-					clr_bit(PORTB, PORTB5);
- 254:	2d 98       	cbi	0x05, 5	; 5
- 256:	8f ef       	ldi	r24, 0xFF	; 255
- 258:	93 ed       	ldi	r25, 0xD3	; 211
- 25a:	20 e3       	ldi	r18, 0x30	; 48
- 25c:	81 50       	subi	r24, 0x01	; 1
- 25e:	90 40       	sbci	r25, 0x00	; 0
- 260:	20 40       	sbci	r18, 0x00	; 0
- 262:	e1 f7       	brne	.-8      	; 0x25c <main+0xb4>
- 264:	00 c0       	rjmp	.+0      	; 0x266 <main+0xbe>
- 266:	00 00       	nop
-					_delay_ms(1000);
-					set_bit(PORTB, PORTB5);
- 268:	2d 9a       	sbi	0x05, 5	; 5
- 26a:	8f ef       	ldi	r24, 0xFF	; 255
- 26c:	93 ed       	ldi	r25, 0xD3	; 211
- 26e:	20 e3       	ldi	r18, 0x30	; 48
- 270:	81 50       	subi	r24, 0x01	; 1
- 272:	90 40       	sbci	r25, 0x00	; 0
- 274:	20 40       	sbci	r18, 0x00	; 0
- 276:	e1 f7       	brne	.-8      	; 0x270 <main+0xc8>
- 278:	00 c0       	rjmp	.+0      	; 0x27a <main+0xd2>
- 27a:	00 00       	nop
-					_delay_ms(1000);
-					clr_bit(PORTB, PORTB5);
- 27c:	2d 98       	cbi	0x05, 5	; 5
- 27e:	8f ef       	ldi	r24, 0xFF	; 255
- 280:	93 ed       	ldi	r25, 0xD3	; 211
- 282:	20 e3       	ldi	r18, 0x30	; 48
- 284:	81 50       	subi	r24, 0x01	; 1
- 286:	90 40       	sbci	r25, 0x00	; 0
- 288:	20 40       	sbci	r18, 0x00	; 0
- 28a:	e1 f7       	brne	.-8      	; 0x284 <main+0xdc>
- 28c:	00 c0       	rjmp	.+0      	; 0x28e <main+0xe6>
- 28e:	00 00       	nop
-					_delay_ms(1000);
-					Est = 0; // Retorna ao esta Aguarda
- 290:	10 92 8b 01 	sts	0x018B, r1	; 0x80018b <__data_end+0x1>
- 294:	10 92 8a 01 	sts	0x018A, r1	; 0x80018a <__data_end>
-
-			break;
- 298:	9e cf       	rjmp	.-196    	; 0x1d6 <main+0x2e>
-
-0000029a <__vector_18>:
-    }
-	
+0000028e <main>:
 }
 
-ISR(USART_RX_vect)
+int main(void)
 {
- 29a:	1f 92       	push	r1
- 29c:	0f 92       	push	r0
- 29e:	0f b6       	in	r0, 0x3f	; 63
- 2a0:	0f 92       	push	r0
- 2a2:	11 24       	eor	r1, r1
- 2a4:	2f 93       	push	r18
- 2a6:	3f 93       	push	r19
- 2a8:	4f 93       	push	r20
- 2aa:	5f 93       	push	r21
- 2ac:	6f 93       	push	r22
- 2ae:	7f 93       	push	r23
- 2b0:	8f 93       	push	r24
- 2b2:	9f 93       	push	r25
- 2b4:	af 93       	push	r26
- 2b6:	bf 93       	push	r27
- 2b8:	ef 93       	push	r30
- 2ba:	ff 93       	push	r31
- 2bc:	cf 93       	push	r28
- 2be:	df 93       	push	r29
- 2c0:	00 d0       	rcall	.+0      	; 0x2c2 <__vector_18+0x28>
- 2c2:	1f 92       	push	r1
- 2c4:	cd b7       	in	r28, 0x3d	; 61
- 2c6:	de b7       	in	r29, 0x3e	; 62
+	DDRB = 0b0000111; // seta no registrador de direcao os pinos de saida como entrada e os pinos de entrada como saida
+ 28e:	87 e0       	ldi	r24, 0x07	; 7
+ 290:	84 b9       	out	0x04, r24	; 4
+	DDRC = 0b00000001;
+ 292:	81 e0       	ldi	r24, 0x01	; 1
+ 294:	87 b9       	out	0x07, r24	; 7
+
+	PORTB = 0b1111000; // habilita pull ups e pull downs necessarios 
+ 296:	98 e7       	ldi	r25, 0x78	; 120
+ 298:	95 b9       	out	0x05, r25	; 5
+	PORTC = 0b00000000;
+ 29a:	18 b8       	out	0x08, r1	; 8
+
+	DDRB = 0b11111000; // Configura as direcoes reais de direcao dos pinos no registrador direcional
+ 29c:	98 ef       	ldi	r25, 0xF8	; 248
+ 29e:	94 b9       	out	0x04, r25	; 4
+	DDRC = 0b00000001;
+ 2a0:	87 b9       	out	0x07, r24	; 7
+
+	PCICR = (1<<PCIE0);	// habilita o barramento b para interrupcoes externas
+ 2a2:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__TEXT_REGION_LENGTH__+0x7e0068>
+	PCMSK0 |= (1<<PCINT0); // define quais pinos serao esperadas as interrupcoes externas
+ 2a6:	eb e6       	ldi	r30, 0x6B	; 107
+ 2a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2aa:	80 81       	ld	r24, Z
+ 2ac:	81 60       	ori	r24, 0x01	; 1
+ 2ae:	80 83       	st	Z, r24
+	PCMSK0 |= (1<<PCINT1);
+ 2b0:	80 81       	ld	r24, Z
+ 2b2:	82 60       	ori	r24, 0x02	; 2
+ 2b4:	80 83       	st	Z, r24
+	PCMSK0 |= (1<<PCINT2);
+ 2b6:	80 81       	ld	r24, Z
+ 2b8:	84 60       	ori	r24, 0x04	; 4
+ 2ba:	80 83       	st	Z, r24
+
+
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0); 
+ 2bc:	e1 ec       	ldi	r30, 0xC1	; 193
+ 2be:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c0:	88 e1       	ldi	r24, 0x18	; 24
+ 2c2:	80 83       	st	Z, r24
+	UCSR0C = (1 << USBS0) | (1 << UCSZ00) | (1 << UCSZ01);
+ 2c4:	8e e0       	ldi	r24, 0x0E	; 14
+ 2c6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+	
+	UBRR0H = (BAUD_PRESCALE >> 8);
+ 2ca:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = BAUD_PRESCALE;
+ 2ce:	87 e6       	ldi	r24, 0x67	; 103
+ 2d0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	
+	UCSR0B |= (1 << RXCIE0);
+ 2d4:	80 81       	ld	r24, Z
+ 2d6:	80 68       	ori	r24, 0x80	; 128
+ 2d8:	80 83       	st	Z, r24
+	
+	sei();
+ 2da:	78 94       	sei
+
+	MensagemInicial();	
+ 2dc:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <MensagemInicial>
+
+	for(;;){
+
+		switch(Est){
+			case Aguarda: //Aguarda senha
+				if(buffer[strlen(buffer)-1]==35){ // Testa se o buffer tem tamanho 6
+ 2e0:	c0 ee       	ldi	r28, 0xE0	; 224
+ 2e2:	d1 e0       	ldi	r29, 0x01	; 1
+
+	MensagemInicial();	
+
+	for(;;){
+
+		switch(Est){
+ 2e4:	80 91 de 01 	lds	r24, 0x01DE	; 0x8001de <__data_end>
+ 2e8:	90 91 df 01 	lds	r25, 0x01DF	; 0x8001df <__data_end+0x1>
+ 2ec:	81 30       	cpi	r24, 0x01	; 1
+ 2ee:	91 05       	cpc	r25, r1
+ 2f0:	a9 f0       	breq	.+42     	; 0x31c <main+0x8e>
+ 2f2:	82 30       	cpi	r24, 0x02	; 2
+ 2f4:	91 05       	cpc	r25, r1
+ 2f6:	41 f1       	breq	.+80     	; 0x348 <main+0xba>
+ 2f8:	89 2b       	or	r24, r25
+ 2fa:	b1 f5       	brne	.+108    	; 0x368 <main+0xda>
+			case Aguarda: //Aguarda senha
+				if(buffer[strlen(buffer)-1]==35){ // Testa se o buffer tem tamanho 6
+ 2fc:	fe 01       	movw	r30, r28
+ 2fe:	01 90       	ld	r0, Z+
+ 300:	00 20       	and	r0, r0
+ 302:	e9 f7       	brne	.-6      	; 0x2fe <main+0x70>
+ 304:	32 97       	sbiw	r30, 0x02	; 2
+ 306:	80 81       	ld	r24, Z
+ 308:	83 32       	cpi	r24, 0x23	; 35
+ 30a:	71 f5       	brne	.+92     	; 0x368 <main+0xda>
+					Est = TestaSenha(buffer); // Atribui o proximo estado do sistema					
+ 30c:	ce 01       	movw	r24, r28
+ 30e:	0e 94 7d 00 	call	0xfa	; 0xfa <TestaSenha>
+ 312:	90 93 df 01 	sts	0x01DF, r25	; 0x8001df <__data_end+0x1>
+ 316:	80 93 de 01 	sts	0x01DE, r24	; 0x8001de <__data_end>
+ 31a:	26 c0       	rjmp	.+76     	; 0x368 <main+0xda>
+
+	MensagemInicial();	
+
+	for(;;){
+
+		switch(Est){
+ 31c:	86 e0       	ldi	r24, 0x06	; 6
+ 31e:	90 e0       	ldi	r25, 0x00	; 0
+					Est = TestaSenha(buffer); // Atribui o proximo estado do sistema					
+				}
+			break;
+			case Liberacao:
+					for(int t = 0; t < 6; t++){
+						set_bit(PORTB, PORTB7);
+ 320:	2f 9a       	sbi	0x05, 7	; 5
+ 322:	2f ef       	ldi	r18, 0xFF	; 255
+ 324:	33 ed       	ldi	r19, 0xD3	; 211
+ 326:	40 e3       	ldi	r20, 0x30	; 48
+ 328:	21 50       	subi	r18, 0x01	; 1
+ 32a:	30 40       	sbci	r19, 0x00	; 0
+ 32c:	40 40       	sbci	r20, 0x00	; 0
+ 32e:	e1 f7       	brne	.-8      	; 0x328 <main+0x9a>
+ 330:	00 c0       	rjmp	.+0      	; 0x332 <main+0xa4>
+ 332:	00 00       	nop
+ 334:	01 97       	sbiw	r24, 0x01	; 1
+				if(buffer[strlen(buffer)-1]==35){ // Testa se o buffer tem tamanho 6
+					Est = TestaSenha(buffer); // Atribui o proximo estado do sistema					
+				}
+			break;
+			case Liberacao:
+					for(int t = 0; t < 6; t++){
+ 336:	a1 f7       	brne	.-24     	; 0x320 <main+0x92>
+						set_bit(PORTB, PORTB7);
+						_delay_ms(1000);
+					}
+					clr_bit(PORTB, PORTB7);
+ 338:	2f 98       	cbi	0x05, 7	; 5
+					MensagemInicial();
+ 33a:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <MensagemInicial>
+					Est = 0; // Retorna ao esta Aguarda
+ 33e:	10 92 df 01 	sts	0x01DF, r1	; 0x8001df <__data_end+0x1>
+ 342:	10 92 de 01 	sts	0x01DE, r1	; 0x8001de <__data_end>
+
+			break;
+ 346:	10 c0       	rjmp	.+32     	; 0x368 <main+0xda>
+			case Configuracao:
+					print("[1] - Cadastra senha \r\n");
+ 348:	87 e9       	ldi	r24, 0x97	; 151
+ 34a:	91 e0       	ldi	r25, 0x01	; 1
+ 34c:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+					print("[2] - Deleta Senha \r\n");
+ 350:	8f ea       	ldi	r24, 0xAF	; 175
+ 352:	91 e0       	ldi	r25, 0x01	; 1
+ 354:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+					print("[3] - Log de Entradas \r\n");
+ 358:	85 ec       	ldi	r24, 0xC5	; 197
+ 35a:	91 e0       	ldi	r25, 0x01	; 1
+ 35c:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+					Est = 0; // Retorna ao esta Aguarda
+ 360:	10 92 df 01 	sts	0x01DF, r1	; 0x8001df <__data_end+0x1>
+ 364:	10 92 de 01 	sts	0x01DE, r1	; 0x8001de <__data_end>
+
+			break;
+		}
+		varrer();
+ 368:	0e 94 10 01 	call	0x220	; 0x220 <varrer>
+	}
+ 36c:	bb cf       	rjmp	.-138    	; 0x2e4 <main+0x56>
+
+0000036e <__vector_18>:
+
+}
+
+ISR(USART_RX_vect){ // rotina quando ocorre a interrupcao na serial
+ 36e:	1f 92       	push	r1
+ 370:	0f 92       	push	r0
+ 372:	0f b6       	in	r0, 0x3f	; 63
+ 374:	0f 92       	push	r0
+ 376:	11 24       	eor	r1, r1
+ 378:	2f 93       	push	r18
+ 37a:	3f 93       	push	r19
+ 37c:	4f 93       	push	r20
+ 37e:	5f 93       	push	r21
+ 380:	6f 93       	push	r22
+ 382:	7f 93       	push	r23
+ 384:	8f 93       	push	r24
+ 386:	9f 93       	push	r25
+ 388:	af 93       	push	r26
+ 38a:	bf 93       	push	r27
+ 38c:	ef 93       	push	r30
+ 38e:	ff 93       	push	r31
+ 390:	cf 93       	push	r28
+ 392:	df 93       	push	r29
+ 394:	00 d0       	rcall	.+0      	; 0x396 <__vector_18+0x28>
+ 396:	1f 92       	push	r1
+ 398:	cd b7       	in	r28, 0x3d	; 61
+ 39a:	de b7       	in	r29, 0x3e	; 62
 	char ReceivedByte = UDR0;
- 2c8:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+ 39c:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
 	char str[3];
 	if(ReceivedByte){ // Testa se a variavel tem um valor se tem entra na condicao
- 2cc:	88 23       	and	r24, r24
- 2ce:	49 f0       	breq	.+18     	; 0x2e2 <__vector_18+0x48>
-		str[0] = ReceivedByte; //cria uma string
- 2d0:	89 83       	std	Y+1, r24	; 0x01
-		str[1] = '\0';		   //com o caracter lido
- 2d2:	1a 82       	std	Y+2, r1	; 0x02
-		strcat(buffer,str);    // concatena str no buffer	
- 2d4:	be 01       	movw	r22, r28
- 2d6:	6f 5f       	subi	r22, 0xFF	; 255
- 2d8:	7f 4f       	sbci	r23, 0xFF	; 255
- 2da:	8e e8       	ldi	r24, 0x8E	; 142
- 2dc:	91 e0       	ldi	r25, 0x01	; 1
- 2de:	0e 94 87 01 	call	0x30e	; 0x30e <strcat>
+ 3a0:	88 23       	and	r24, r24
+ 3a2:	b1 f0       	breq	.+44     	; 0x3d0 <__vector_18+0x62>
+		if(ReceivedByte == 13){
+ 3a4:	8d 30       	cpi	r24, 0x0D	; 13
+ 3a6:	59 f4       	brne	.+22     	; 0x3be <__vector_18+0x50>
+			str[0] = 35;          //Alimenta String com o sinal de fim
+ 3a8:	83 e2       	ldi	r24, 0x23	; 35
+ 3aa:	89 83       	std	Y+1, r24	; 0x01
+			str[1] = '\0';		   //com o caracter lido
+ 3ac:	1a 82       	std	Y+2, r1	; 0x02
+			strcat(buffer,str);    // concatena str no buffer
+ 3ae:	be 01       	movw	r22, r28
+ 3b0:	6f 5f       	subi	r22, 0xFF	; 255
+ 3b2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3b4:	80 ee       	ldi	r24, 0xE0	; 224
+ 3b6:	91 e0       	ldi	r25, 0x01	; 1
+ 3b8:	0e 94 80 02 	call	0x500	; 0x500 <strcat>
+ 3bc:	09 c0       	rjmp	.+18     	; 0x3d0 <__vector_18+0x62>
+		}else{
+			str[0] = ReceivedByte; //Alimenta a String com a letura da serial
+ 3be:	89 83       	std	Y+1, r24	; 0x01
+			str[1] = '\0';		   //com o caracter lido
+ 3c0:	1a 82       	std	Y+2, r1	; 0x02
+			strcat(buffer,str);    // concatena str no buffer
+ 3c2:	be 01       	movw	r22, r28
+ 3c4:	6f 5f       	subi	r22, 0xFF	; 255
+ 3c6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3c8:	80 ee       	ldi	r24, 0xE0	; 224
+ 3ca:	91 e0       	ldi	r25, 0x01	; 1
+ 3cc:	0e 94 80 02 	call	0x500	; 0x500 <strcat>
+		}	
+	}		
+}
+ 3d0:	0f 90       	pop	r0
+ 3d2:	0f 90       	pop	r0
+ 3d4:	0f 90       	pop	r0
+ 3d6:	df 91       	pop	r29
+ 3d8:	cf 91       	pop	r28
+ 3da:	ff 91       	pop	r31
+ 3dc:	ef 91       	pop	r30
+ 3de:	bf 91       	pop	r27
+ 3e0:	af 91       	pop	r26
+ 3e2:	9f 91       	pop	r25
+ 3e4:	8f 91       	pop	r24
+ 3e6:	7f 91       	pop	r23
+ 3e8:	6f 91       	pop	r22
+ 3ea:	5f 91       	pop	r21
+ 3ec:	4f 91       	pop	r20
+ 3ee:	3f 91       	pop	r19
+ 3f0:	2f 91       	pop	r18
+ 3f2:	0f 90       	pop	r0
+ 3f4:	0f be       	out	0x3f, r0	; 63
+ 3f6:	0f 90       	pop	r0
+ 3f8:	1f 90       	pop	r1
+ 3fa:	18 95       	reti
+
+000003fc <__vector_3>:
+
+ISR(PCINT0_vect){ // rotina quando corre interrupcao pelo teclado
+ 3fc:	1f 92       	push	r1
+ 3fe:	0f 92       	push	r0
+ 400:	0f b6       	in	r0, 0x3f	; 63
+ 402:	0f 92       	push	r0
+ 404:	11 24       	eor	r1, r1
+ 406:	2f 93       	push	r18
+ 408:	3f 93       	push	r19
+ 40a:	4f 93       	push	r20
+ 40c:	5f 93       	push	r21
+ 40e:	6f 93       	push	r22
+ 410:	7f 93       	push	r23
+ 412:	8f 93       	push	r24
+ 414:	9f 93       	push	r25
+ 416:	af 93       	push	r26
+ 418:	bf 93       	push	r27
+ 41a:	ef 93       	push	r30
+ 41c:	ff 93       	push	r31
+ 41e:	cf 93       	push	r28
+ 420:	df 93       	push	r29
+ 422:	00 d0       	rcall	.+0      	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+ 424:	1f 92       	push	r1
+ 426:	cd b7       	in	r28, 0x3d	; 61
+ 428:	de b7       	in	r29, 0x3e	; 62
+	char str[3];
+	if (rd_bit(PINB,PINB0)){ // testa se a interrupcao foi feita no pino 0 do barramento b
+ 42a:	18 9b       	sbis	0x03, 0	; 3
+ 42c:	19 c0       	rjmp	.+50     	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
+		p2 = 0;
+ 42e:	10 92 e7 01 	sts	0x01E7, r1	; 0x8001e7 <p2+0x1>
+ 432:	10 92 e6 01 	sts	0x01E6, r1	; 0x8001e6 <p2>
+		str[0] = teclado[p1][p2]; // salva o valor da tecla na string auxiliar
+ 436:	80 91 e8 01 	lds	r24, 0x01E8	; 0x8001e8 <p1>
+ 43a:	90 91 e9 01 	lds	r25, 0x01E9	; 0x8001e9 <p1+0x1>
+ 43e:	fc 01       	movw	r30, r24
+ 440:	ee 0f       	add	r30, r30
+ 442:	ff 1f       	adc	r31, r31
+ 444:	8e 0f       	add	r24, r30
+ 446:	9f 1f       	adc	r25, r31
+ 448:	fc 01       	movw	r30, r24
+ 44a:	e8 5b       	subi	r30, 0xB8	; 184
+ 44c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 44e:	80 81       	ld	r24, Z
+ 450:	89 83       	std	Y+1, r24	; 0x01
+		str[1] = '\0';
+ 452:	1a 82       	std	Y+2, r1	; 0x02
+		print(str);	// escreve na serial o valor da string
+ 454:	ce 01       	movw	r24, r28
+ 456:	01 96       	adiw	r24, 0x01	; 1
+ 458:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+		while(rd_bit(PINB,PINB0)); // para o fluxo do codigo ate que o botao seja liberado
+ 45c:	18 99       	sbic	0x03, 0	; 3
+ 45e:	fe cf       	rjmp	.-4      	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
 	}
-		
- 2e2:	0f 90       	pop	r0
- 2e4:	0f 90       	pop	r0
- 2e6:	0f 90       	pop	r0
- 2e8:	df 91       	pop	r29
- 2ea:	cf 91       	pop	r28
- 2ec:	ff 91       	pop	r31
- 2ee:	ef 91       	pop	r30
- 2f0:	bf 91       	pop	r27
- 2f2:	af 91       	pop	r26
- 2f4:	9f 91       	pop	r25
- 2f6:	8f 91       	pop	r24
- 2f8:	7f 91       	pop	r23
- 2fa:	6f 91       	pop	r22
- 2fc:	5f 91       	pop	r21
- 2fe:	4f 91       	pop	r20
- 300:	3f 91       	pop	r19
- 302:	2f 91       	pop	r18
- 304:	0f 90       	pop	r0
- 306:	0f be       	out	0x3f, r0	; 63
- 308:	0f 90       	pop	r0
- 30a:	1f 90       	pop	r1
- 30c:	18 95       	reti
+	if (rd_bit(PINB,PINB1)){ // testa se a interrupcao foi feita no pino 1 do barramento b
+ 460:	19 9b       	sbis	0x03, 1	; 3
+ 462:	1b c0       	rjmp	.+54     	; 0x49a <__LOCK_REGION_LENGTH__+0x9a>
+		p2 = 1;
+ 464:	81 e0       	ldi	r24, 0x01	; 1
+ 466:	90 e0       	ldi	r25, 0x00	; 0
+ 468:	90 93 e7 01 	sts	0x01E7, r25	; 0x8001e7 <p2+0x1>
+ 46c:	80 93 e6 01 	sts	0x01E6, r24	; 0x8001e6 <p2>
+		str[0] = teclado[p1][p2]; // salva o valor da tecla na string auxiliar
+ 470:	80 91 e8 01 	lds	r24, 0x01E8	; 0x8001e8 <p1>
+ 474:	90 91 e9 01 	lds	r25, 0x01E9	; 0x8001e9 <p1+0x1>
+ 478:	fc 01       	movw	r30, r24
+ 47a:	ee 0f       	add	r30, r30
+ 47c:	ff 1f       	adc	r31, r31
+ 47e:	8e 0f       	add	r24, r30
+ 480:	9f 1f       	adc	r25, r31
+ 482:	fc 01       	movw	r30, r24
+ 484:	e8 5b       	subi	r30, 0xB8	; 184
+ 486:	fe 4f       	sbci	r31, 0xFE	; 254
+ 488:	81 81       	ldd	r24, Z+1	; 0x01
+ 48a:	89 83       	std	Y+1, r24	; 0x01
+		str[1] = '\0';
+ 48c:	1a 82       	std	Y+2, r1	; 0x02
+		print(str); // escreve na serial o valor da string
+ 48e:	ce 01       	movw	r24, r28
+ 490:	01 96       	adiw	r24, 0x01	; 1
+ 492:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+		while(rd_bit(PINB,PINB1)); // para o fluxo do codigo ate que o botao seja liberado
+ 496:	19 99       	sbic	0x03, 1	; 3
+ 498:	fe cf       	rjmp	.-4      	; 0x496 <__LOCK_REGION_LENGTH__+0x96>
+	}
+	
+	if (rd_bit(PINB,PINB2)){ // testa se a interrupcao foi feita no pino 2 do barramento b
+ 49a:	1a 9b       	sbis	0x03, 2	; 3
+ 49c:	1b c0       	rjmp	.+54     	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
+		p2 = 2;
+ 49e:	82 e0       	ldi	r24, 0x02	; 2
+ 4a0:	90 e0       	ldi	r25, 0x00	; 0
+ 4a2:	90 93 e7 01 	sts	0x01E7, r25	; 0x8001e7 <p2+0x1>
+ 4a6:	80 93 e6 01 	sts	0x01E6, r24	; 0x8001e6 <p2>
+		str[0] = teclado[p1][p2]; // salva o valor da tecla na string auxiliar
+ 4aa:	80 91 e8 01 	lds	r24, 0x01E8	; 0x8001e8 <p1>
+ 4ae:	90 91 e9 01 	lds	r25, 0x01E9	; 0x8001e9 <p1+0x1>
+ 4b2:	fc 01       	movw	r30, r24
+ 4b4:	ee 0f       	add	r30, r30
+ 4b6:	ff 1f       	adc	r31, r31
+ 4b8:	8e 0f       	add	r24, r30
+ 4ba:	9f 1f       	adc	r25, r31
+ 4bc:	fc 01       	movw	r30, r24
+ 4be:	e8 5b       	subi	r30, 0xB8	; 184
+ 4c0:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4c2:	82 81       	ldd	r24, Z+2	; 0x02
+ 4c4:	89 83       	std	Y+1, r24	; 0x01
+		str[1] = '\0';
+ 4c6:	1a 82       	std	Y+2, r1	; 0x02
+		print(str); // escreve na serial o valor da string
+ 4c8:	ce 01       	movw	r24, r28
+ 4ca:	01 96       	adiw	r24, 0x01	; 1
+ 4cc:	0e 94 5b 00 	call	0xb6	; 0xb6 <print>
+		while(rd_bit(PINB,PINB2)); // para o fluxo do codigo ate que o botao seja liberado
+ 4d0:	1a 99       	sbic	0x03, 2	; 3
+ 4d2:	fe cf       	rjmp	.-4      	; 0x4d0 <__LOCK_REGION_LENGTH__+0xd0>
+	}	
+}
+ 4d4:	0f 90       	pop	r0
+ 4d6:	0f 90       	pop	r0
+ 4d8:	0f 90       	pop	r0
+ 4da:	df 91       	pop	r29
+ 4dc:	cf 91       	pop	r28
+ 4de:	ff 91       	pop	r31
+ 4e0:	ef 91       	pop	r30
+ 4e2:	bf 91       	pop	r27
+ 4e4:	af 91       	pop	r26
+ 4e6:	9f 91       	pop	r25
+ 4e8:	8f 91       	pop	r24
+ 4ea:	7f 91       	pop	r23
+ 4ec:	6f 91       	pop	r22
+ 4ee:	5f 91       	pop	r21
+ 4f0:	4f 91       	pop	r20
+ 4f2:	3f 91       	pop	r19
+ 4f4:	2f 91       	pop	r18
+ 4f6:	0f 90       	pop	r0
+ 4f8:	0f be       	out	0x3f, r0	; 63
+ 4fa:	0f 90       	pop	r0
+ 4fc:	1f 90       	pop	r1
+ 4fe:	18 95       	reti
 
-0000030e <strcat>:
- 30e:	fb 01       	movw	r30, r22
- 310:	dc 01       	movw	r26, r24
- 312:	0d 90       	ld	r0, X+
- 314:	00 20       	and	r0, r0
- 316:	e9 f7       	brne	.-6      	; 0x312 <strcat+0x4>
- 318:	11 97       	sbiw	r26, 0x01	; 1
- 31a:	01 90       	ld	r0, Z+
- 31c:	0d 92       	st	X+, r0
- 31e:	00 20       	and	r0, r0
- 320:	e1 f7       	brne	.-8      	; 0x31a <strcat+0xc>
- 322:	08 95       	ret
+00000500 <strcat>:
+ 500:	fb 01       	movw	r30, r22
+ 502:	dc 01       	movw	r26, r24
+ 504:	0d 90       	ld	r0, X+
+ 506:	00 20       	and	r0, r0
+ 508:	e9 f7       	brne	.-6      	; 0x504 <strcat+0x4>
+ 50a:	11 97       	sbiw	r26, 0x01	; 1
+ 50c:	01 90       	ld	r0, Z+
+ 50e:	0d 92       	st	X+, r0
+ 510:	00 20       	and	r0, r0
+ 512:	e1 f7       	brne	.-8      	; 0x50c <strcat+0xc>
+ 514:	08 95       	ret
 
-00000324 <strcmp>:
- 324:	fb 01       	movw	r30, r22
- 326:	dc 01       	movw	r26, r24
- 328:	8d 91       	ld	r24, X+
- 32a:	01 90       	ld	r0, Z+
- 32c:	80 19       	sub	r24, r0
- 32e:	01 10       	cpse	r0, r1
- 330:	d9 f3       	breq	.-10     	; 0x328 <strcmp+0x4>
- 332:	99 0b       	sbc	r25, r25
- 334:	08 95       	ret
+00000516 <strcmp>:
+ 516:	fb 01       	movw	r30, r22
+ 518:	dc 01       	movw	r26, r24
+ 51a:	8d 91       	ld	r24, X+
+ 51c:	01 90       	ld	r0, Z+
+ 51e:	80 19       	sub	r24, r0
+ 520:	01 10       	cpse	r0, r1
+ 522:	d9 f3       	breq	.-10     	; 0x51a <strcmp+0x4>
+ 524:	99 0b       	sbc	r25, r25
+ 526:	08 95       	ret
 
-00000336 <_exit>:
- 336:	f8 94       	cli
+00000528 <_exit>:
+ 528:	f8 94       	cli
 
-00000338 <__stop_program>:
- 338:	ff cf       	rjmp	.-2      	; 0x338 <__stop_program>
+0000052a <__stop_program>:
+ 52a:	ff cf       	rjmp	.-2      	; 0x52a <__stop_program>
